@@ -1,8 +1,8 @@
 const mapsDefaultState = {
-    count: 1,
+    count: 0,
     maps: [],
     name: '', 
-    id: 22222,
+    id: 0,
     editMapRow: null,
     editLocationRow: null
 }
@@ -68,7 +68,7 @@ export default (state = mapsDefaultState, action) => {
                         }
                     },
                     editLocationRow: null
-                };
+        };
         default:
             return state;
     }
