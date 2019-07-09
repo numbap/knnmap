@@ -28,14 +28,14 @@ export default class LocationRowForm extends React.Component {
         e.preventDefault();
 
         const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(this.state.location) + '.json?access_token=pk.eyJ1IjoicGpvYmluIiwiYSI6ImNqdzkyYW04azF5azU0Ymw5d3pubWZ0ajYifQ.yfUUDFgq4poK7JyNhhOz_g&limit=1'
-        console.log(url)
-        const xxxx = fetch(url)
+        fetch(url)
         .then(function(response) {
             return response.json();
         })
         .then(function(myJson){
-            this.setState(() => ({ lat: myJson.features[0].center[1], 'lng': myJson.features[0].center[0] }));
-            console.log('myJSON', myJson.features[0].center)
+            console.log('myjson', myJson)
+            console.log('\n==========================\n')
+            this.setState(() => ((myJson.features[0]) ? { lat: myJson.features[0].center[1], 'lng': myJson.features[0].center[0] } : { lat: 'Unknown', 'lng': 'Unknown'}));
             let tmpObj ={} 
             tmpObj[this.state.id] = { 
                 location: this.state.location, 
