@@ -11,12 +11,16 @@ const MapRow = (props) => (
           <td>{props.mapDetails && props.mapDetails.description}</td>
           <td>{props.mapDetails && Object.keys(props.mapDetails.locations).length}</td>
           <td>
-              <i style={{cursor: 'pointer'}} 
-              className="far fa-trash-alt" 
-              onClick={() => { props.dispatch(deleteMap(props.otherKey)) }} ></i> - 
-              <i style={{cursor: 'pointer'}}  
-              className="fas fa-edit"
-              onClick={() => props.dispatch(setMapRow(props.otherKey)) } ></i>
+          {props.otherKey ? (<div><i style={{cursor: 'pointer'}} 
+          className="far fa-trash-alt" 
+          onClick={() => { props.dispatch(deleteMap(props.otherKey)) }} ></i> - 
+          <i style={{cursor: 'pointer'}}  
+          className="fas fa-edit"
+          onClick={() => props.dispatch(setMapRow(props.otherKey)) } ></i></div>) : 
+          (<div><i style={{cursor: 'pointer'}}  
+          className="far fa-plus-square"
+          onClick={() => props.dispatch(setMapRow(props.otherKey)) } ></i></div>)}
+          
 
           </td>
       </tr>

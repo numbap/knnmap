@@ -1,7 +1,5 @@
 import React from 'react'
 import uuid from 'uuid'
-import {connect} from 'react-redux'
-import {addMap, setMapRow} from '../actions/maps'
 
 export default class MapRowForm extends React.Component {
 
@@ -15,7 +13,6 @@ export default class MapRowForm extends React.Component {
                 locations: props.mapDetails.locations, 
                 description: props.mapDetails.description
             }
-
         } else {
             this.state = { 
                 id: uuid(), 
@@ -23,8 +20,7 @@ export default class MapRowForm extends React.Component {
                 locations: '', 
                 description: ''
             }
-        }
-        
+        }   
     }
 
     processForm = (e) => {
@@ -36,9 +32,9 @@ export default class MapRowForm extends React.Component {
             locations: this.state.locations
         }
         this.props.submitMap(tmpObj)
+        this.setState(() => ({ id: uuid(), name: '', locations: '', description: ''}))
         this.render()
     }
-
 
     onNameChange = (e) => {
         const name = e.target.value;

@@ -1,16 +1,13 @@
 import React from 'react'
 import MapRow from './MapRow'
 import MapRowForm from './MapRowForm'
-import Store from '../reducers/maps'
 import {connect} from 'react-redux'
 import {addMap}  from './../actions/maps'
-import uuid from 'uuid'
-
 
 const MapsTable = (props) => (
     <div className="container">
     <div className="row">
-        <h3>AA {props.editMapRow} XX</h3>
+        <h3>Maps</h3>
         <table className="table">
             <thead>
                 <tr>
@@ -38,8 +35,6 @@ const MapsTable = (props) => (
                     />;
                 }  
             })}
-
-
             </tbody>
         </table>
     </div>
@@ -53,4 +48,3 @@ const mapStateToProps = (state) => {
 const ConnectedMapsTable = connect(mapStateToProps)(MapsTable);
 
 export default ConnectedMapsTable
-

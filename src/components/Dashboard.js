@@ -2,7 +2,6 @@ import React from 'react'
 
 export default class AddressTable extends React.Component {
 
-
     addAddress = (newAddress) => {
         this.setState((prevState) => {
             return { 
@@ -29,7 +28,6 @@ export default class AddressTable extends React.Component {
     
             );
       }
-
  }
 
 

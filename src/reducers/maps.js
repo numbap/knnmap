@@ -43,7 +43,6 @@ export default (state = mapsDefaultState, action) => {
                 ...state,
                 editMapRow: action.mapRow
             };
-
         case 'DELETE_LOCATION':
             x = {...state.maps}
             delete x[action.MapId].locations[action.LocationId]
@@ -58,18 +57,20 @@ export default (state = mapsDefaultState, action) => {
                 editLocationRow: action.LocationId
         };
         case 'ADD_LOCATION':
-            console.log(state)
-            return {
-                ...state,
-                maps: {
-                    [action.mapId]: {
-                        locations: {
-                            ...state.maps[action.mapId].locations, ...action.newLocation
+                console.log('newmap', action.newLocation)
+                return {
+                    ...state,
+                    maps: {
+                        ...state.maps,
+                        [action.mapId]: {
+                            ...state.maps[action.mapId],
+                            locations: {
+                                ...state.maps[action.mapId].locations, ...action.newLocation
+                            }
                         }
-                    }
-                },
-                editLocationRow: null
-            };
+                    },
+                    editLocationRow: null
+                };
         default:
             return state;
     }

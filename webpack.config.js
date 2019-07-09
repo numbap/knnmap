@@ -1,22 +1,32 @@
-const path = require('path')
+const path = require('path');
 
-module.exports = {
+module.exports = (env) => {
+  const isProduction = env === 'production';
 
-    entry: "./src/reactComponents.js",
+  return {
+    entry: './src/reactComponents.js',
     output: {
-        path: path.join(__dirname, 'public'),
-        filename: 'app.js'
+      path: path.join(__dirname, 'public'),
+      filename: 'app.js'
     },
     module: {
-        rules: [{
-            loader: 'babel-loader',
-            test: /\.js$/,
-            exclude: /node_modules/
-        }]
+      rules: [{
+        loader: 'babel-loader',
+        test: /\.js$/,
+        exclude: /node_modules/
+      }, {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }]
     },
-    devtool: "cheap-module-eval-sourcemap",
+    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
     devServer: {
-        contentBase: path.join(__dirname,'public'),
-        historyApiFallback: true
+      contentBase: path.join(__dirname, 'public'),
+      historyApiFallback: true
     }
+  };
 };

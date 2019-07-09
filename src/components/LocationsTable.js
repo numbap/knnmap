@@ -1,21 +1,17 @@
 import React from 'react'
 import LocationRow from './LocationRow'
 import LocationRowForm from './LocationRowForm'
+import NewMapBox from './MapBox'
 import Store from '../reducers/maps'
 import {connect} from 'react-redux'
 import {addLocation}  from '../actions/maps'
-import uuid from 'uuid'
-import {Link} from 'react-router-dom'
-
-// Put a link to the main map. 
-// This already exists in the menu. 
-// The routing is all fucked up. 
 
 const LocationsTable = (props) => (
 
     <div className="container">
     <div className="row">
-        <h3>AA {props.editLocationRow} XX</h3>
+        <h3>{props.maps[props.match.params.id].name}</h3>
+        <NewMapBox/>
         <table className="table">
             <thead>
                 <tr>
