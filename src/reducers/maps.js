@@ -1,5 +1,3 @@
-import {createStore} from 'redux'
-
 const mapsDefaultState = {
     count: 1,
     maps: [],
