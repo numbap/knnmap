@@ -1,3 +1,4 @@
+// Load Dependencies
 import React from 'react'
 
 class MiscText extends React.Component {

@@ -1,5 +1,7 @@
+// Load Dependencies
 import React from 'react'
 
+// Jumbotron
 export default class Jumbotron extends React.Component {
     render() {
         return(

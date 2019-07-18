@@ -1,3 +1,4 @@
+// Load Dependencies
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
@@ -20,12 +21,6 @@ export default class NavBar extends React.Component {
                     </li>
                     <li className="nav-item active">
                         <NavLink to="/maps" className="nav-link" activeClassName="text-uppercase font-weight-bold">maps</NavLink>
-                    </li>
-                    <li className="nav-item active">
-                        <NavLink to="/sdsdsdsds" className="nav-link" activeClassName="text-uppercase font-weight-bold">404</NavLink>
-                    </li>
-                    <li className="nav-item active">
-                        <a className="nav-link" href="#">Logout <span className="sr-only">(current)</span></a>
                     </li>
                 </ul>
     

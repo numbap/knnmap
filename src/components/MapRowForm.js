@@ -1,3 +1,4 @@
+// Load Dependencies
 import React from 'react'
 import uuid from 'uuid'
 
@@ -8,16 +9,16 @@ export default class MapRowForm extends React.Component {
         if(props.otherKey)
         {
             this.state = { 
-                id: props.otherKey, 
+                _id: props.mapDetails._id, 
                 name: props.mapDetails.name, 
                 locations: props.mapDetails.locations, 
                 description: props.mapDetails.description
             }
         } else {
             this.state = { 
-                id: uuid(), 
+                _id: null, 
                 name: '', 
-                locations: '', 
+                locations: [], 
                 description: ''
             }
         }   
@@ -26,13 +27,13 @@ export default class MapRowForm extends React.Component {
     processForm = (e) => {
         e.preventDefault();
         let tmpObj ={} 
-        tmpObj[this.state.id] = { 
+        tmpObj = { 
+            _id: this.state._id || null,
             name: this.state.name, 
             description: this.state.description, 
-            locations: this.state.locations
         }
         this.props.submitMap(tmpObj)
-        this.setState(() => ({ id: uuid(), name: '', locations: '', description: ''}))
+        this.setState(() => ({ _id: null, name: '', locations: [], description: ''}))
         this.render()
     }
 

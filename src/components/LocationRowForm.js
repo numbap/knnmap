@@ -1,8 +1,8 @@
+// Load Dependencies
 import React from 'react'
 import uuid from 'uuid'
 
 export default class LocationRowForm extends React.Component {
-
     constructor(props){
         super(props)
         if(props.otherKey)
@@ -11,22 +11,20 @@ export default class LocationRowForm extends React.Component {
                 id: props.otherKey, 
                 location: props.locationDetails.location, 
                 lat: props.locationDetails.lat, 
-                lng: props.locationDetails.lng
+                lon: props.locationDetails.lon
             }
-
         } else {
             this.state = { 
                 id: uuid(), 
                 location: '', 
                 lat: '', 
-                lng: ''
+                lon: ''
             }
         }
     }
 
     processForm = (e) => {
         e.preventDefault();
-
         const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + encodeURIComponent(this.state.location) + '.json?access_token=pk.eyJ1IjoicGpvYmluIiwiYSI6ImNqdzkyYW04azF5azU0Ymw5d3pubWZ0ajYifQ.yfUUDFgq4poK7JyNhhOz_g&limit=1'
         fetch(url)
         .then(function(response) {
@@ -34,16 +32,16 @@ export default class LocationRowForm extends React.Component {
         })
         .then(function(myJson){
             console.log('myjson', myJson)
-            console.log('\n==========================\n')
-            this.setState(() => ((myJson.features[0]) ? { lat: myJson.features[0].center[1], 'lng': myJson.features[0].center[0] } : { lat: 'Unknown', 'lng': 'Unknown'}));
+            this.setState(() => ((myJson.features[0]) ? { lat: myJson.features[0].center[1], 'lon': myJson.features[0].center[0] } : { lat: 'Unknown', 'lon': 'Unknown'}));
             let tmpObj ={} 
-            tmpObj[this.state.id] = { 
+            tmpObj= { 
+                _id: this.state.id,
                 location: this.state.location, 
                 lat: this.state.lat, 
-                lng: this.state.lng
+                lon: this.state.lon
             }
             this.props.submitLocation(tmpObj);
-            this.setState(() => ({ id: uuid(), location: '', lat: '', lng: '' }))
+            this.setState(() => ({ id: null, location: '', lat: '', lon: '' }))
             this.render()
         }.bind(this));
  

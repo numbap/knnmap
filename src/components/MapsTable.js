@@ -1,8 +1,9 @@
+// Load Dependencies
 import React from 'react'
 import MapRow from './MapRow'
 import MapRowForm from './MapRowForm'
 import {connect} from 'react-redux'
-import {addMap}  from './../actions/maps'
+import {addApiMap}  from './../actions/apiCalls'
 
 const MapsTable = (props) => (
     <div className="container">
@@ -18,23 +19,23 @@ const MapsTable = (props) => (
                 </tr>
             </thead>
             <tbody>
-            {console.log(props.maps)}
-            {Object.keys(props.maps).concat(null).map((x) => {
-                if(x === props.editMapRow){ 
+            {props.maps.concat({_id:null}).map((x) => {
+                if(x._id === props.editMapRow){ 
                     return <MapRowForm 
-                        key={x} 
-                        otherKey={x} 
-                        mapDetails={props.maps[x]} 
-                        submitMap={(newMap) => props.dispatch(addMap(newMap))} 
-                        />;
+                    key={x._id} 
+                    otherKey={x._id} 
+                    mapDetails={x} 
+                    submitMap={(newMap) => addApiMap(newMap, props.dispatch)} 
+                    />;
                 } else {
                     return <MapRow 
-                     key={x} 
-                     otherKey={x} 
-                     mapDetails={props.maps[x]}
+                    key={x._id} 
+                    otherKey={x._id} 
+                    mapDetails={x}
                     />;
                 }  
             })}
+
             </tbody>
         </table>
     </div>

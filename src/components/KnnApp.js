@@ -1,3 +1,4 @@
+// Load Dependencies
 import React from 'react'
 import NavBar from './components/NavBar'
 import MainBlock from './components/MainBlock'

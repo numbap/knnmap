@@ -11,9 +11,9 @@ export const addMap = (newMap = {}) => ({
 });
 
 
-export const deleteMap = (id = 0) => ({
+export const deleteMap = (_id = null) => ({
         type: 'DELETE_MAP',
-        id
+        _id
 });
 
 export const setMapRow = (mapRow = {}) => ({
@@ -21,7 +21,7 @@ export const setMapRow = (mapRow = {}) => ({
         mapRow
 });
 
-export const deleteLocation = (LocationId = {}, MapId = {}) => ({
+export const deleteLocation = (MapId = null, LocationId = null) => ({
         type: 'DELETE_LOCATION',
         LocationId, 
         MapId
@@ -33,8 +33,8 @@ export const setLocationRow = (LocationId = {}, MapId = {}) => ({
         MapId
 });
 
-export const addLocation = (mapId = '', newLocation = {}) => ({
+export const addLocation = (mapId = '', newLocations = {}) => ({
         type: 'ADD_LOCATION',
         mapId,
-        newLocation
+        newLocations
 });

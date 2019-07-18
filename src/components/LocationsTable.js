@@ -1,48 +1,47 @@
+// Load Dependencies
 import React from 'react'
 import LocationRow from './LocationRow'
 import LocationRowForm from './LocationRowForm'
-import NewMapBox from './MapBox'
-import Store from '../reducers/maps'
+import MapBox from './MapBox'
 import {connect} from 'react-redux'
-import {addLocation}  from '../actions/maps'
+import {addApiLocation}  from '../actions/apiCalls'
+import {Link} from 'react-router-dom'
 
 const LocationsTable = (props) => (
-
     <div className="container">
     <div className="row">
-        <h3>{props.maps[props.match.params.id].name}</h3>
-        <NewMapBox/>
+        <h3><Link to="../maps">{props.maps[0] && props.maps.filter(x => x._id == props.match.params.id)[0].name}</Link></h3>
+        <MapBox/>
         <table className="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Location</th>
                     <th scope="col">Lat</th>
-                    <th scope="col">Lng</th>
+                    <th scope="col">Lon</th>
                 </tr>
             </thead>
             <tbody>
 
-            {Object.keys(props.maps[props.match.params.id].locations).concat(null).map((x) => {
-                if(x === props.editLocationRow){ 
+            {props.maps[0] && props.maps.filter(x => x._id == props.match.params.id)[0].locations.concat({_id:null}).map((x) => {
+
+                if(x._id === props.editLocationRow){ 
                     return <LocationRowForm 
-                    key={x}
+                    key={x._id}
                     mapId={props.match.params.id} 
-                    otherKey={x} 
-                    locationDetails={x ? props.maps[props.match.params.id].locations[x] : null} 
-                    submitLocation={(newLocation) => props.dispatch(addLocation(props.match.params.id, newLocation))} 
+                    otherKey={x._id} 
+                    locationDetails={x} 
+                    submitLocation={(newLocation) => addApiLocation(props.match.params.id, newLocation, props.dispatch)} 
                     />;
                 } else {
                     return <LocationRow 
-                    key={x} 
+                    key={x._id} 
                     mapId={props.match.params.id}
-                    otherKey={x} 
-                    locationDetails={x ? props.maps[props.match.params.id].locations[x] : null}
+                    otherKey={x._id} 
+                    locationDetails={x}
                     />;
                 }
-
-
-                 
+                
             })}
 
             </tbody>
@@ -58,7 +57,3 @@ const mapStateToProps = (state) => {
 const ConnectedLocationsTable = connect(mapStateToProps)(LocationsTable);
 
 export default ConnectedLocationsTable
-
-
-
-

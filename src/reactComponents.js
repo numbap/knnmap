@@ -1,3 +1,4 @@
+// Load Dependencies
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Dashboard from './components/Dashboard'
@@ -9,11 +10,12 @@ import Error404 from './components/Error404'
 import LocationsTable from './components/LocationsTable'
 import configureStore from './store/configureStore'
 import {setMaps} from './actions/maps'
+import {fetchMaps} from './actions/apiCalls'
 
 const store = configureStore();
 store.dispatch(setMaps());
 var state = store.getState();
-console.log(state)
+fetchMaps(store)
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 

@@ -1,3 +1,6 @@
+// Load Dependencies
+import {fetchNews} from '../actions/apiCalls'
+
 const mapsDefaultState = {
     count: 0,
     maps: [],
@@ -11,60 +14,50 @@ let x = {}
 
 export default (state = mapsDefaultState, action) => {
     switch(action.type){
-        case 'INCREMENT':
-            return {
-                ...state,
-                count: state.count + 1
-            };
         case 'SET_MAPS':
-            console.log(state)
             return {
                 ...state,
-                maps: {...action.maps}
+                maps:[...action.maps]
             };
         case 'ADD_MAP':
             return {
                 ...state,
-                maps: {...state.maps, ...action.newMap},
-                editMapRow: null
+                maps: [...state.maps.filter(x => x._id != action.newMap._id), action.newMap],
+                editMapRow: null,
+                editLocationRow: null
             };
         case 'DELETE_MAP':
-            x = {...state.maps}
-            delete x[action.id]
             return {
                 ...state,
-                maps: x
+                maps: state.maps.filter(x => x._id != action._id)
             };
         case 'SET_MAP_ROW':
-            console.log(action)
             return {
                 ...state,
                 editMapRow: action.mapRow
             };
         case 'DELETE_LOCATION':
-            x = {...state.maps}
-            delete x[action.MapId].locations[action.LocationId]
+            let tmp = state
+            tmp.maps.filter(a => a._id == action.MapId)[0].locations = tmp.maps.filter(a => a._id == action.MapId)[0].locations.filter(a => a._id != action.LocationId)
             return {
-                ...state,
-                maps: x
+                ...tmp,
+                editMapRow: null
         };
         case 'SET_LOCATION_ROW':
-            console.log(action)
             return {
                 ...state,
                 editLocationRow: action.LocationId
         };
         case 'ADD_LOCATION':
-                console.log('newmap', action.newLocation)
                 return {
                     ...state,
                     maps: {
                         ...state.maps,
                         [action.mapId]: {
                             ...state.maps[action.mapId],
-                            locations: {
-                                ...state.maps[action.mapId].locations, ...action.newLocation
-                            }
+                            locations: [
+                                action.newLocations
+                            ]
                         }
                     },
                     editLocationRow: null
