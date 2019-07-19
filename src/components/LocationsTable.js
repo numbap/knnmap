@@ -11,7 +11,7 @@ const LocationsTable = (props) => (
     <div className="container">
     <div className="row">
         <h3><Link to="../maps">{props.maps[0] && props.maps.filter(x => x._id == props.match.params.id)[0].name}</Link></h3>
-        <MapBox/>
+        <MapBox locations={props.maps[0] && props.maps.filter(x => x._id == props.match.params.id)[0].locations.concat({_id:null})} />
         <table className="table">
             <thead>
                 <tr>
