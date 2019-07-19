@@ -1,7 +1,7 @@
 // Load Dependencies
 import React from 'react'
 import {connect} from 'react-redux'
-import {deleteLocation, setLocationRow} from '../actions/maps'
+import {setLocationRow} from '../actions/maps'
 import {deleteApiLocation} from '../actions/apiCalls'
 
 // Row for a location table

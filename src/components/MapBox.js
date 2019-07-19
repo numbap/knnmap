@@ -19,7 +19,7 @@ function Map(props) {
   return (
     <GoogleMap
       defaultZoom={10}
-      defaultCenter={{ lat: parseFloat(props.locations[0].lat), lng: parseFloat(props.locations[0].lon) }}
+      defaultCenter={{ lat: parseFloat(props.locations[0].lat) || 43.6529, lng: parseFloat(props.locations[0].lon) || -79.3849}}
       defaultOptions={{disableDefaultUI:true}}
     >
       {props.locations.map(loc => (

@@ -16,7 +16,7 @@ export default class KnnApp extends React.Component {
 
     changeTitle(){
         this.setState((prevState) => {
-            return { title: 'ddddd' }
+            return { title: 'Map Plotter' }
         });
     }
 
@@ -26,8 +26,6 @@ export default class KnnApp extends React.Component {
             <NavBar pageHeader={this.state.pageheader} />
             <MainBlock title={this.state.title}/>
             <AddressTable />
-            <br/><br/><br/><br/><button onClick={this.changeTitle} id="dddd">Submit</button>
-
             </div>
         );
     }

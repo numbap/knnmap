@@ -4,9 +4,7 @@ import { Link} from 'react-router-dom'
 
 // Default error page
 export default class Error404 extends React.Component {
-    lookForKey = (e) => {
-        console.log(e)
-    }
+
         render() {
             return (
             <div className="container">

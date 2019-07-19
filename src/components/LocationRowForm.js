@@ -31,7 +31,6 @@ export default class LocationRowForm extends React.Component {
             return response.json();
         })
         .then(function(myJson){
-            console.log('myjson', myJson)
             this.setState(() => ((myJson.features[0]) ? { lat: myJson.features[0].center[1], 'lon': myJson.features[0].center[0] } : { lat: 'Unknown', 'lon': 'Unknown'}));
             let tmpObj ={} 
             tmpObj= { 
