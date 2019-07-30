@@ -5,6 +5,7 @@ import uuid from 'uuid'
 export default class LocationRowForm extends React.Component {
     constructor(props){
         super(props)
+   
         if(props.otherKey)
         {
             this.state = { 
@@ -15,7 +16,7 @@ export default class LocationRowForm extends React.Component {
             }
         } else {
             this.state = { 
-                id: uuid(), 
+                id: null, 
                 location: '', 
                 lat: '', 
                 lon: ''
@@ -31,6 +32,8 @@ export default class LocationRowForm extends React.Component {
             return response.json();
         })
         .then(function(myJson){
+            console.log('Processing Form');
+
             this.setState(() => ((myJson.features[0]) ? { lat: myJson.features[0].center[1], 'lon': myJson.features[0].center[0] } : { lat: 'Unknown', 'lon': 'Unknown'}));
             let tmpObj ={} 
             tmpObj= { 

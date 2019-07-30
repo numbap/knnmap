@@ -3,7 +3,9 @@ import {fetchNews} from '../actions/apiCalls'
 
 const mapsDefaultState = {
     count: 0,
-    maps: [],
+    maps: [{
+        locations: []
+    }],
     name: '', 
     id: 0,
     editMapRow: null,

@@ -44,6 +44,7 @@ export function addApiLocation(_id, body, dispatch) {
             })
             .then((response) => response.json())
             .then(function(x){
+              console.log(_id, body, dispatch)
               dispatch(addMap(x.data))
             })
             .catch((e) => console.log(e))

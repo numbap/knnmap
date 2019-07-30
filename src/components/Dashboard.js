@@ -4,6 +4,12 @@ import {fetchMaps} from './../actions/apiCalls'
 
 // Main dashoard
 export default class AddressTable extends React.Component {
+    constructor(props){
+        super(props);
+        fetchMaps();
+    }    
+
+
     addAddress = (newAddress) => {
         this.setState((prevState) => {
             return { 
@@ -13,8 +19,6 @@ export default class AddressTable extends React.Component {
     }
 
         render() {
-            fetchMaps();
-
             return (
             <div className="container">
             <div className="row">

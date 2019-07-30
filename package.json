@@ -33,7 +33,7 @@
     "react-map-gl": "^5.0.7",
     "react-mapbox-gl": "^4.5.1",
     "react-redux": "^7.1.0",
-    "react-router-dom": "4.2.2",
+    "react-router-dom": "latest",
     "redux": "^4.0.1",
     "sass-loader": "^7.1.0",
     "source-map": "^0.7.3",

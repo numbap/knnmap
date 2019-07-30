@@ -17,41 +17,50 @@ function Map(props) {
   }, []);
 
   return (
-    <GoogleMap
-      defaultZoom={10}
-      defaultCenter={{ lat: parseFloat(props.locations[0].lat) || 43.6529, lng: parseFloat(props.locations[0].lon) || -79.3849}}
-      defaultOptions={{disableDefaultUI:true}}
-    >
-      {props.locations.map(loc => (
-        <Marker
-          key={loc._id}
-          position={{
-            lat: parseFloat(loc.lat),
-            lng: parseFloat(loc.lon)
-          }}
-          onClick={() => {
-            setSelectedLocation(loc);
-          }}
-        />
-      ))}
+    <div>
+      { 
+        props.locations.locations[0] ? 
 
-      {selectedLocation && (
-        <InfoWindow
-          onCloseClick={() => {
-            setSelectedLocation(null);
-          }}
-          position={{
-            lat: parseFloat(selectedLocation.lat),
-            lng: parseFloat(selectedLocation.lon)
-          }}
+          <GoogleMap
+          defaultZoom={10}
+          defaultCenter={{ lat: parseFloat(props.locations.locations[0].lat) || 43.6529, lng: parseFloat(props.locations.locations[0].lon) || -79.3849}}
+          defaultOptions={{disableDefaultUI:true}}
         >
-          <div>
-            <h2>{selectedLocation.location}</h2>
-          </div>
-        </InfoWindow>
-      )}
-    </GoogleMap>
-  );
+          {props.locations.locations.map(loc => (
+            <Marker
+              key={loc._id}
+              position={{
+                lat: parseFloat(loc.lat),
+                lng: parseFloat(loc.lon)
+              }}
+              onClick={() => {
+                setSelectedLocation(loc);
+              }}
+            />
+          ))}
+    
+          {selectedLocation && (
+            <InfoWindow
+              onCloseClick={() => {
+                setSelectedLocation(null);
+              }}
+              position={{
+                lat: parseFloat(selectedLocation.lat),
+                lng: parseFloat(selectedLocation.lon)
+              }}
+            >
+              <div>
+                <h2>{selectedLocation.location}</h2>
+              </div>
+            </InfoWindow>
+          )}
+        </GoogleMap>
+            : 
+          null
+
+      }
+    </div>
+    );  
 }
 
 const MapWrapped = withScriptjs(withGoogleMap(Map));
