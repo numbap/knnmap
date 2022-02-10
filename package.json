@@ -23,7 +23,7 @@
     "express": "^4.17.1",
     "immutable": "^4.0.0-rc.12",
     "mapbox-gl": "^1.1.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "latest",
     "react-dom": "latest",
     "react-google-maps": "^9.4.5",
